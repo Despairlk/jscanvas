@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			img {
+				width: 100px;
+				height: 100px;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			
+			body {
+				width: 800px;
+				height: 500px;
+				border: 3px solid red;
+				margin: 0px 0px;
+			}
+		</style>
+	</head>
+
+	<body id="bodyid">
+		<img id="imag" src="img/无标题.jpg" alt="" />
+		<input type="button" name="show" value="show" onclick="show()" />
+		<script>
+			function show() {
+				console.log(document.body.clientWidth);
+				console.log(document.body.clientHeight);
+			}
+			var imag = document.getElementById("imag");
+			var speed = 100;
+			var x_move = 10;//横向移动速度
+			var y_move = 10;//纵向移动速度
+			var bodys = document.getElementById("bodyid");
+			function move() {
+				x = imag.offsetLeft;
+				y = imag.offsetTop;
+				x = parseInt(x) + x_move;
+				y = parseInt(y) + y_move;
+				imag.style.left = x + "px";
+				imag.style.top = y + "px";
+				if(x <= 0 || x >= document.body.clientWidth - imag.offsetWidth + bodys.style.margin) {
+					x_move *= -1;
+					
+				}
+				if(y <= 0 || y >= document.body.clientHeight - imag.offsetHeight + bodys.style.margin) {
+					y_move *= -1;
+				}
+			}
+			function changeColor(){
+			   imag.src="";
+			}
+			setInterval(move, 10);
+		</script>
+	</body>
+
+</html>
